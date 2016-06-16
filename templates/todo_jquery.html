@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jova todo List</title>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css"><!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+	<script src="../static/js/jquery-1.12.3.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+	<script src="../static/js/main.js"></script>
+
+	<style type="text/css">
+		body{
+			background-color: #e8e8e8;
+		}
+		.material-icons{
+			cursor: pointer;
+		}
+		#task_add_panel{
+			background-color:rgb(250, 250, 250);
+			border: 1px solid #f0f0f0;
+			margin-top: 15px;
+			padding: 10px;
+		}
+		#add_new_task{
+		}
+		.task-list{
+			background-color:rgb(250, 250, 250);
+			border: 1px solid #f0f0f0;
+			float: left;
+			margin: 10px;
+			max-width:400px;
+			padding: 10px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="jq-container">
+		<nav>
+		    <div class="nav-wrapper">
+		      <a href="#!" class="brand-logo">To Do</a>
+		      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		      <ul class="right hide-on-med-and-down">
+		        <li><a href="#">Ongoing Task</a></li>
+		        <li><a href="#">Completed Task</a></li>
+		      </ul>
+		      <ul class="side-nav" id="mobile-demo">
+		        <li><a href="#">Completed Task</a></li>
+		        <li><a href="#">Ongoing Task</a></li>
+		    </div>
+		</nav>
+
+		<div class="container">
+			<div class="row" id="task_add_panel">
+				<div class="col l12"  id="add_new_task">
+					<div class="col l12">
+						<p>Add new task ...</p>
+					</div>
+					<br>
+				</div>
+				<div class="col l12" id="add_input">
+					<div class="col l10">
+						<input id="task-title" type="text" placeholder="Title">
+						<input id="task-desc" type="text" placeholder="Add your task here" >
+						<input id="task-date" type="text" placeholder="Timeline">
+					</div>
+					<div class="col l1">
+						<button type="submit" id="add_btn">Add</button>
+					</div>
+					<div class="col l1">
+						<button id="discard_btn">Discard</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+		<div id="all-task-list">
+			<div class="task-list">
+				<h5>Task 1 <span class="right">21/5/2016</span></h5>
+				<li>Hello hi how are you buddy. I am fine with myself</li>
+				<i class="complete-task material-icons">check_circle</i>
+				<i class="remove-task material-icons">delete</i>
+			</div>
+			<div class="task-list">
+				<h5>Task 2 <span class="right">21/5/2016</span></h5>
+				<li>Hello hi how are you buddy. I am fine with myself</li>
+				<i class="complete-task material-icons">check_circle</i>
+				<i class="remove-task material-icons">delete</i>
+			</div>
+			<div class="task-list">
+				<h5>Task 3 <span class="right">21/5/2016</span></h5>
+				<li>Hello hi how are you buddy. I am fine with myself</li>
+				<i class="complete-task material-icons">check_circle</i>
+				<i class="remove-task material-icons">delete</i>
+			</div>
+			<div class="task-list">
+				<h5>Task 4 <span class="right">21/5/2016</span></h5>
+				<li>Hello hi how are you buddy. I am fine with myself</li>
+				<i class="complete-task material-icons">check_circle</i>
+				<i class="remove-task material-icons">delete</i>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+		    $( "#task-date" ).datepicker();
+		  });
+		$("#add_input").hide();
+		$(".button-collapse").sideNav();
+		$( "#add_new_task" ).click(function() {
+			$("#add_input").toggle();
+		});
+
+		$("#discard_btn").click(function(){
+			$("#add_input").hide();
+		});
+
+		$("#add_btn").click(function(){
+			var title = $("#task-title").val();
+			var desc = $("#task-desc").val();
+			var timeline = $("#task-date").val();
+
+			$("#all-task-list").prepend(
+				"<div class=\"task-list\">" +
+					"<h5>" + title + "<span class=\"right\">" + timeline + "</span></h5>" +
+					"<li>" + desc + "</li>" +
+					"<i class=\"complete-task material-icons\">check_circle</i>" + 
+					"<i class=\"remove-task material-icons\">delete</i>" +
+				"</div>"
+				);
+		});
+
+
+		$("#all-task-list").on('click', '.remove-task', function() {
+			$(this).parent().remove();
+		});
+	</script>
+</body>
+</html>

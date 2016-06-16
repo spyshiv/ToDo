@@ -1,0 +1,153 @@
+<html ng-app>
+  <head>
+    <title>Jova todo List</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css"><!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+          
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script src="../static/js/jquery-1.12.3.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <style type="text/css">
+    body{
+      background-color: #e8e8e8;
+    }
+    .material-icons{
+      cursor: pointer;
+    }
+    #task_add_panel{
+      background-color:rgb(250, 250, 250);
+      border: 1px solid #f0f0f0;
+      margin-top: 15px;
+      padding: 10px;
+    }
+    #add_new_task{
+    }
+    .task-list{
+      background-color:rgb(250, 250, 250);
+      border: 1px solid #f0f0f0;
+      float: left;
+      margin: 10px;
+      max-width:400px;
+      padding: 10px;
+      width: 100%;
+    }
+    .todo-wrapper {
+      background-color:rgb(250, 250, 250);
+      width: 100%;
+    }
+    .green{
+      text-decoration: line-through;
+    }
+    </style>
+  </head>
+  <body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">To Do</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#">Ongoing Task</a></li>
+            <li><a href="#">Completed Task</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="#">Completed Task</a></li>
+            <li><a href="#">Ongoing Task</a></li>
+        </div>
+    </nav>
+
+<div class="todo-wrapper" ng-controller="TodoCtrl">
+    <div class="container">
+      <div class="row" id="task_add_panel">
+        <div class="col l12"  id="add_new_task">
+          <div class="col l12">
+            <p>Add new task ...</p>
+          </div>
+          <br>
+        </div>
+        <div class="col l12" id="add_input">
+        <form>
+            <div class="col l10">
+              <input id="task-title" type="text" placeholder="Title" 
+              ng-model="ToDoTitle">
+              <input id="task-desc" type="text" placeholder="Add your task here" ng-model="ToDoDesc">
+              <input id="task-date" type="date" placeholder="Timeline" ng-model="ToDoDate">
+            </div>
+            <div class="col l1">
+              <button id="add_btn" ng-click="addTodo()">Add</button>
+            </div>
+            <div class="col l1">
+              <button id="discard_btn">Discard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="all-task-list">
+      <div class="task-list" ng-repeat="todo in todos"  id="{{todo.title}}">
+          <h5>{{todo.title}} <span class="right">{{todo.timeline}}</span></h5>
+          <li>{{todo.description}}</li>
+          <li>{{todo.completed}}</li>
+          <i class="complete-task material-icons" ng-click="completeTodo(todo.title)">check_circle</i>
+          <i class="remove-task material-icons" ng-click="removeTodo(todo.title)">delete</i>
+      </div>
+    </div>
+</div>
+    <script type="text/javascript">
+    $("#add_input").hide();
+    $( "#add_new_task" ).click(function() {
+      $("#add_input").toggle(500);
+    });
+
+    $("#discard_btn").click(function(){
+      $("#add_input").hide(500);
+    });
+
+      function TodoCtrl($scope) {
+      $scope.myClass = {green:false};
+        
+        $scope.todos = [
+          {title:'Learn AngularJS', description: 'Learn Learn', timeline: '23/5/2016', completed: 'false' },         
+          {title:'Learn Jquery', description: 'Learn Learn', timeline: '23/5/2016', completed: 'false'},         
+        ];
+
+        $scope.addTodo = function () {
+          $scope.todos.unshift({title:$scope.ToDoTitle, description:$scope.ToDoDesc,timeline:$scope.ToDoDate, completed: 'false'});
+          $scope.ToDoTitle = '';
+          $scope.ToDoDesc = '';
+          $scope.ToDoDate = '';
+        };
+
+        $scope.removeTodo = function(todotitle) {
+            for (var i =0; i < $scope.todos.length; i++)
+             if ($scope.todos[i].title === todotitle) {
+                $scope.todos.splice(i,1);
+                break;
+             }
+        }
+
+        $scope.completeTodo = function(todotitle) {
+            for (var i =0; i < $scope.todos.length; i++)
+             if ($scope.todos[i].title === todotitle) {
+                $scope.todos[i].completed = 'True';
+                var element = document.getElementById(todotitle);
+                $(element).css("background-color", "green");
+                $(element).append("<i class=\"add-again material-icons\" ng-click=\"NotcompleteTodo(todo.title)\">add_circle</i>");
+                break;
+             }
+        }
+
+        $scope.NotcompleteTodo = function(todotitle) {
+          alert("working");
+        }
+      }
+    </script>
+  </body>
+  
+</html>
