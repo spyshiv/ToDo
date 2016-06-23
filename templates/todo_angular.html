@@ -1,6 +1,7 @@
 <html ng-app>
+  
   <head>
-    <title>Jova todo List</title>
+    <title>To do List</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
@@ -8,25 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
           
     <link rel="stylesheet" type="text/css" href="../static/css/todo_angular.css">
-    <script src="../static/js/jquery-1.12.3.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <style type="text/css">
-    
-    </style>
   </head>
+  
   <body>
+    
     <nav>
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo">To Do</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
-<div class="container">
-<div class="todo-wrapper" ng-controller="TodoCtrl">
-    <div class="container">
+
+    <div class="todo-wrapper" ng-controller="TodoCtrl">
       <div class="row" id="task_add_panel">
         <div class="col l12"  id="add_new_task">
           <div class="col l12">
@@ -35,37 +28,38 @@
           <br>
         </div>
         <div class="col l12" id="add_input">
-        <form>
+          <form>
             <div class="col l10">
               <input id="task-title" type="text" placeholder="Title" 
-              ng-model="ToDoTitle">
+                  ng-model="ToDoTitle">
               <input id="task-desc" type="text" placeholder="Add your task here" ng-model="ToDoDesc">
               <input id="task-date" type="date" placeholder="Timeline" ng-model="ToDoDate">
             </div>
             <div class="col l1">
-              <button id="add_btn" ng-click="addTodo()">Add</button>
+              <a class="btn-floating btn-small waves-effect waves-light red" ng-click="addTodo()" title="Add"><i class="material-icons">add</i></a>
             </div>
             <div class="col l1">
-              <button id="discard_btn">Discard</button>
+              <a id="discard_btn" class="btn-floating btn-small waves-effect waves-light red" title="Discard"><i class="material-icons">delete</i></a>
             </div>
           </form>
         </div>
       </div>
-    </div>
-
-    <div id="all-task-list">
-      <div class="task-list" ng-repeat="todo in todos"  id="{{todo.title}}">
-          <div class="ribbon-wrapper-green"><div class="ribbon-green">{{todo.completed}}</div></div>
-          <h4>{{todo.title}}</h4>
-          <h6>{{todo.timeline}}</h6>
-          <p>{{todo.description}}</p>
-          <i class="complete-task material-icons" ng-click="completeTodo(todo.title)">check_circle</i>
-          <i class="remove-task material-icons" ng-click="removeTodo(todo.title)">delete</i>
+      <div id="all-task-list">
+        <div class="task-list" ng-repeat="todo in todos"  id="{{todo.title}}">
+            <div class="ribbon-wrapper"><div class="ribbon">{{todo.completed}}</div></div>
+            <h5>{{todo.title}}</h5>
+            <h6><b>Deadline-</b>{{todo.timeline}}</h6><br>
+            <p>{{todo.description}}</p><br>
+            <i class="complete-task material-icons right" ng-click="completeTodo(todo.title)">check_circle</i>
+            <i class="remove-task material-icons right" ng-click="removeTodo(todo.title)">delete</i>
+        </div>
       </div>
     </div>
-</div>
-</div>
+
+    <script src="../static/js/jquery-1.12.3.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="../static/js/todo_angular.js"></script>
-  </body>
-  
+  </body>  
 </html>
