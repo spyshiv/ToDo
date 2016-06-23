@@ -1,5 +1,5 @@
 # ToDo
-A Simple todo list in Angularjs and Jquery
+A Simple To Do App in Angularjs and Jquery :smiley: :memo: :clipboard: :thumbsup: :blush: 
 
 ##How To Run This Project
 
