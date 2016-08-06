@@ -17,9 +17,3 @@ python -m SimpleHTTPServer
 Enjoy Cheers!!!
 
 Note: Angular Project needs a server to run however you can run jquery project without using server
-
-This is new line by user 1
-gsjhdgh
-gfhghfk
-hdfvhdgs
-Lion in jungle
